@@ -5,6 +5,7 @@ import LandOwnerMenu from "../pages/Dashboard/LandOwner/LandOwnerMenu";
 import LandOwnerForm from "../pages/Dashboard/LandOwner/LandOwnerForm";
 import LandOwnerList from "../pages/Dashboard/LandOwner/LandOwnerList";
 import LandOwnerEdit from "../pages/Dashboard/LandOwner/LandOwnerEdit";
+import AdminMenu from "../pages/Dashboard/Admin/AdminMenu";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             Component: LandOwnerEdit,
           },
         ],
+      },
+      {
+        path: "admin",
+        Component: AdminMenu,
       },
     ],
   },

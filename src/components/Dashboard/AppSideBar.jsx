@@ -5,6 +5,7 @@ import {
   BuildingStorefrontIcon,
   CalculatorIcon,
   Squares2X2Icon,
+  UserIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 
@@ -106,6 +107,19 @@ const AppSideBar = () => {
                     Transaksi
                   </div>
                 </a>
+              </li>
+              <li className="px-3">
+                <Link
+                  to={`/dashboard/admin`}
+                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-neutral-50 hover:text-neutral-500 focus:bg-neutral-50 aria-[current=page]:bg-neutral-50 aria-[current=page]:text-neutral-500 "
+                >
+                  <div className="flex items-center self-center">
+                    <UserIcon className="h-6 w-6" />
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                    Admin
+                  </div>
+                </Link>
               </li>
             </ul>
           </div>
