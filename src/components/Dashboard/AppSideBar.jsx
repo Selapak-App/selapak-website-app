@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import images from "../../assets/images";
 import {
   BuildingOfficeIcon,
@@ -42,8 +43,8 @@ const AppSideBar = () => {
           <div>
             <ul className="flex flex-1 flex-col gap-1 py-3">
               <li className="px-3">
-                <a
-                  href="#"
+                <Link
+                  to={`/dashboard`}
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-neutral-50 hover:text-neutral-500 focus:bg-neutral-50 aria-[current=page]:bg-neutral-50 aria-[current=page]:text-neutral-500 "
                 >
                   <div className="flex items-center self-center">
@@ -52,11 +53,11 @@ const AppSideBar = () => {
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                     Dashboard
                   </div>
-                </a>
+                </Link>
               </li>
               <li className="px-3">
-                <a
-                  href="#"
+                <Link
+                  to={`/dashboard/owner`}
                   className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-neutral-50 hover:text-neutral-500 focus:bg-neutral-50 aria-[current=page]:bg-neutral-50 aria-[current=page]:text-neutral-500 "
                 >
                   <div className="flex items-center self-center ">
@@ -65,7 +66,7 @@ const AppSideBar = () => {
                   <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
                     Pemilik Lahan
                   </div>
-                </a>
+                </Link>
               </li>
               <li className="px-3">
                 <a

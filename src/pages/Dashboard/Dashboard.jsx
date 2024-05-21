@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import AppSideBar from "../../components/Dashboard/AppSideBar.jsx";
 import Header from "../../components/Dashboard/Header.jsx";
 
@@ -8,7 +9,7 @@ const Dashboard = () => {
         <AppSideBar />
         <main className="w-full flex-grow bg-slate-50">
           <Header />
-          <p>Main content</p>
+          <Outlet />
         </main>
       </div>
     </>
