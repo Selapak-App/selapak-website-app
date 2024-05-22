@@ -8,8 +8,16 @@ import {
   UserIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
+import { useDispatch } from "react-redux";
+import { logout } from "../../pages/Auth/slice/AuthSlice";
 
 const AppSideBar = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout);
+    localStorage.clear();
+    window.location.reload();
+  };
   return (
     <>
       <aside
@@ -147,7 +155,10 @@ const AppSideBar = () => {
                 />
               </svg>
             </div>
-            <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm font-medium">
+            <div
+              onClick={handleLogout}
+              className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm font-medium"
+            >
               Logout
             </div>
           </a>
