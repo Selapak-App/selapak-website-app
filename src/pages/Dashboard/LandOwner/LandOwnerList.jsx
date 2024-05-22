@@ -1,13 +1,57 @@
 import { useNavigate } from "react-router-dom";
 import Td from "../../../components/Element/Td";
 import Th from "../../../components/Element/Th";
-import dummyData from "../../../data/dummyData";
+// import dummyData from "../../../data/dummyData";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  deleteOwnerAction,
+  getAllOwnerAction,
+  selectedOwner,
+} from "./slice/LandOwnerSlice";
+import Loading from "../../../components/Element/Loading";
 
 const LandOwnerList = () => {
   const navigate = useNavigate();
+  const { isLoading, owners } = useSelector((state) => state.owner);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllOwnerAction());
+  }, [dispatch]);
+
   const navToForm = () => {
     navigate("/dashboard/owner/form");
   };
+  const handleDelete = async (id) => {
+    try {
+      const res = await dispatch(deleteOwnerAction(id)).unwrap();
+      if (res) {
+        console.log(res);
+      } else {
+        console.log("error di func delete");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleSendEditToForm = (data) => {
+    console.log("data to edit: ", data);
+    dispatch(selectedOwner(data));
+    navigate("/dashboard/owner/edit");
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!Array.isArray(owners) || owners.length === 0) {
+    return (
+      <div className="flex justify-center items-center">
+        <h1 className="font-bold text-dark">Data Belum ada</h1>
+      </div>
+    );
+  }
   return (
     <>
       <div className="flex justify-between items-center mb-4">
@@ -34,7 +78,7 @@ const LandOwnerList = () => {
               <Th>Status</Th>
               <Th>Action</Th>
             </tr>
-            {dummyData.ownerData.map((data, idx) => {
+            {owners?.map((data, idx) => {
               return (
                 <tr key={idx}>
                   <Td>{++idx}</Td>
@@ -42,16 +86,19 @@ const LandOwnerList = () => {
                   <Td>{data.email}</Td>
                   <Td>{data.phoneNumber}</Td>
                   <Td>{data.nik}</Td>
-                  <Td>{data.status}</Td>
+                  <Td>{data.isActive ? "active" : "inactive"}</Td>
                   <Td>
                     <div className="flex gap-2 justify-center items-center">
                       <button
-                        onClick={() => navigate("/dashboard/owner/edit")}
+                        onClick={() => handleSendEditToForm(data)}
                         className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-secondary hover:bg-secondary-darker focus:bg-secondary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
                       >
                         <span>Edit</span>
                       </button>
-                      <button className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none">
+                      <button
+                        onClick={() => handleDelete(data.id)}
+                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                      >
                         <span>Delete</span>
                       </button>
                     </div>
