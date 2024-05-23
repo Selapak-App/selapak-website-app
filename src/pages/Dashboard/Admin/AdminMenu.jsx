@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Td from "../../../components/Element/Td";
-import dummyData from "../../../data/dummyData";
 import Th from "../../../components/Element/Th";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Element/Loading";
-import { registerAdminAction } from "./slice/adminSlice";
+import {
+  getAllAdminAction,
+  registerAdminAction,
+  setAdminActiveAction,
+  setAdminInactiveAction,
+} from "./slice/adminSlice";
 
 const registerAdminSchema = yup
   .object({
@@ -37,18 +41,21 @@ const AdminMenu = () => {
     },
     resolver: yupResolver(registerAdminSchema),
   });
+
+  useEffect(() => {
+    dispatch(getAllAdminAction());
+  }, [dispatch]);
+
   const actionBtnStyle = (status) => {
-    const style =
-      status.toLowerCase() === "active"
-        ? "bg-red-600 hover:bg-red-700 focus:bg-red-700"
-        : "bg-primary hover:bg-blue-700 focus:bg-blue-700";
+    const style = status
+      ? "bg-red-600 hover:bg-red-700 focus:bg-red-700"
+      : "bg-primary hover:bg-blue-700 focus:bg-blue-700";
     return style;
   };
   const onSubmit = async (data) => {
     try {
       const res = await dispatch(registerAdminAction(data)).unwrap();
       if (res) {
-        console.log("data admin di store: ", admins);
         setShow(false);
       } else {
         setError(true);
@@ -58,9 +65,40 @@ const AdminMenu = () => {
       setError(true);
     }
   };
+
+  const handleToggleAdminStatus = async (payload) => {
+    try {
+      if (payload.isActive) {
+        const res = await dispatch(setAdminInactiveAction(payload.id)).unwrap();
+        if (res) {
+          console.log(res);
+        } else {
+          console.log("Error to change status admin");
+        }
+      } else {
+        const res = await dispatch(setAdminActiveAction(payload.id)).unwrap();
+        if (res) {
+          console.log(res);
+        } else {
+          console.log("Error to change status admin");
+        }
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
   if (isLoading) {
     return <Loading />;
   }
+
+  if (!Array.isArray(admins) || admins.length === 0) {
+    return (
+      <div className="flex justify-center items-center">
+        <h1 className="font-bold text-dark">Data Belum ada</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full pt-8 px-6 flex flex-row">
       <div
@@ -208,7 +246,7 @@ const AdminMenu = () => {
                 <Th>Status</Th>
                 <Th>Action</Th>
               </tr>
-              {dummyData.adminData.map((data, idx) => {
+              {admins.map((data, idx) => {
                 return (
                   <tr key={idx}>
                     <Td>{++idx}</Td>
@@ -219,12 +257,11 @@ const AdminMenu = () => {
                       <div className="flex gap-2 justify-center items-center">
                         <button
                           className={`inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap ${actionBtnStyle(
-                            data.status
+                            data.isActive
                           )} focus-visible:outline-none`}
+                          onClick={() => handleToggleAdminStatus(data)}
                         >
-                          <span>
-                            {data.status === "active" ? "Deactive" : "Active"}
-                          </span>
+                          <span>{data.isActive ? "Deactive" : "Active"}</span>
                         </button>
                       </div>
                     </Td>
