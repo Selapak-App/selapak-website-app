@@ -3,7 +3,7 @@ import axiosInstance from "./axiosInstance";
 export const AuthService = () => {
   const login = async (payload) => {
     try {
-      const res = await axiosInstance.post("/admin/login", payload);
+      const res = await axiosInstance.post("/auth/admin/login", payload);
       if (res.status == 200) {
         const token = res.data.data.token;
         localStorage.setItem("token", token);

@@ -1,10 +1,62 @@
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../components/Element/Loading";
+import { updateOwnerAction } from "./slice/LandOwnerSlice";
+
+const updateLandOwnerSchema = yup
+  .object({
+    name: yup.string().required("Name is required"),
+    email: yup
+      .string()
+      .email("Email must be right")
+      .required("Email is required"),
+    phoneNumber: yup.string().required("Phone number is required"),
+    nik: yup.string().required("NIK is required"),
+  })
+  .required();
 
 const LandOwnerEdit = () => {
   const navigate = useNavigate();
+  const { isLoading, owner } = useSelector((state) => state.owner);
+  // console.log("data owner di edit page: ", owner);
+  const dispatch = useDispatch();
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: owner.name ? owner.name : "",
+      email: owner.email ? owner.email : "",
+      phoneNumber: owner.phoneNumber ? owner.phoneNumber : "",
+      nik: owner.nik ? owner.nik : "",
+    },
+    resolver: yupResolver(updateLandOwnerSchema),
+  });
   const handleCancel = () => {
     navigate(-1);
   };
+  const onSubmit = async (data) => {
+    try {
+      const payload = { id: owner.id, data: { ...data } };
+      const res = await dispatch(updateOwnerAction(payload)).unwrap();
+      if (res) {
+        navigate("/dashboard/owner");
+      } else {
+        setError(true);
+      }
+    } catch (e) {
+      console.log(e);
+      setError(true);
+    }
+  };
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="flex justify-center items-center">
       <div className="flex flex-col gap-6 w-full max-w-lg bg-white shadow-md rounded-md">
@@ -19,12 +71,25 @@ const LandOwnerEdit = () => {
             >
               Name
             </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name"
-              type="name"
-              placeholder="name"
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { onBlur, onChange, value } }) => (
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="name"
+                  type="name"
+                  placeholder="Name"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="name"
             />
+            {errors.name && (
+              <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -33,12 +98,27 @@ const LandOwnerEdit = () => {
             >
               Email
             </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="email"
-              placeholder="Email"
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { onBlur, onChange, value } }) => (
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="email"
             />
+            {errors.email && (
+              <p className="text-sm text-red-500 mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -47,12 +127,27 @@ const LandOwnerEdit = () => {
             >
               Nomor Handphone
             </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="phoneNumber"
-              type="phoneNumber"
-              placeholder="phoneNumber"
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { onBlur, onChange, value } }) => (
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="phoneNumber"
+                  type="phoneNumber"
+                  placeholder="Phone Number"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="phoneNumber"
             />
+            {errors.phoneNumber && (
+              <p className="text-sm text-red-500 mt-1">
+                {errors.phoneNumber.message}
+              </p>
+            )}
           </div>
           <div className="mb-6">
             <label
@@ -61,17 +156,31 @@ const LandOwnerEdit = () => {
             >
               NIK
             </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="nik"
-              type="nik"
-              placeholder="nik"
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { onBlur, onChange, value } }) => (
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="nik"
+                  type="nik"
+                  placeholder="NIK"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="nik"
             />
+            {errors.nik && (
+              <p className="text-sm text-red-500 mt-1">{errors.nik.message}</p>
+            )}
           </div>
           <div className="flex items-center justify-between">
             <button
               className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
+              onClick={handleSubmit(onSubmit)}
             >
               Save
             </button>
