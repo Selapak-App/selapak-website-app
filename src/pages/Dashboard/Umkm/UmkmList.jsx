@@ -1,51 +1,44 @@
 import { useNavigate } from "react-router-dom";
-import Td from "../../../components/Element/Td";
-import Th from "../../../components/Element/Th";
-// import dummyData from "../../../data/dummyData";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  deleteOwnerAction,
-  getAllOwnerAction,
-  selectedOwner,
-} from "./slice/LandOwnerSlice";
 import Loading from "../../../components/Element/Loading";
+import {
+  deleteUmkmAction,
+  getAllUmkmAction,
+  selectedUmkm,
+} from "./slice/umkmSlice";
+import Td from "../../../components/Element/Td";
+import Th from "../../../components/Element/Th";
 
-const LandOwnerList = () => {
+const UmkmList = () => {
   const navigate = useNavigate();
-  const { isLoading, owners } = useSelector((state) => state.owner);
+  const { isLoading, umkmList } = useSelector((state) => state.umkm);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllOwnerAction());
+    dispatch(getAllUmkmAction());
   }, [dispatch]);
 
-  const navToForm = () => {
-    navigate("/dashboard/owner/form");
-  };
   const handleDelete = async (id) => {
     try {
-      const res = await dispatch(deleteOwnerAction(id)).unwrap();
+      const res = await dispatch(deleteUmkmAction(id)).unwrap();
       if (res) {
         console.log(res);
-      } else {
-        console.log("error di func delete");
       }
     } catch (e) {
       console.log(e);
     }
   };
+
   const handleSendEditToForm = (data) => {
-    console.log("data to edit: ", data);
-    dispatch(selectedOwner(data));
-    navigate("/dashboard/owner/edit");
+    dispatch(selectedUmkm(data));
+    navigate("/dashboard/umkm/edit");
   };
 
   if (isLoading) {
     return <Loading />;
   }
-
-  if (!Array.isArray(owners) || owners.length === 0) {
+  if (!Array.isArray(umkmList) || umkmList.length === 0) {
     return (
       <div className="flex justify-center items-center">
         <h1 className="font-bold text-dark">Data Belum ada</h1>
@@ -55,13 +48,7 @@ const LandOwnerList = () => {
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-dark font-bold">Pemilik Lahan</h1>
-        <button
-          onClick={navToForm}
-          className="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-primary hover:bg-blue-700 focus:bg-neutral-700"
-        >
-          <span>Add</span>
-        </button>
+        <h1 className="text-dark font-bold">UMKM</h1>
       </div>
       <div className="w-full overflow-x-auto">
         <table
@@ -72,20 +59,24 @@ const LandOwnerList = () => {
             <tr>
               <Th>No</Th>
               <Th>Nama</Th>
+              <Th>Gender</Th>
               <Th>Email</Th>
+              <Th>Alamat</Th>
               <Th>Nomor HP</Th>
               <Th>NIK</Th>
               <Th>Status</Th>
               <Th>Action</Th>
             </tr>
-            {owners?.map((data, idx) => {
+            {umkmList?.map((data, idx) => {
               return (
                 <tr key={idx}>
                   <Td>{++idx}</Td>
-                  <Td>{data.name}</Td>
+                  <Td>{data.fullName}</Td>
+                  <Td>{data.gender === "MALE" ? "Laki-Laki" : "Perempuan"}</Td>
                   <Td>{data.email}</Td>
-                  <Td>{data.phoneNumber}</Td>
-                  <Td>{data.nik}</Td>
+                  <Td>{data.address ? data.address : "-"}</Td>
+                  <Td>{data.phoneNumber ? data.phoneNumber : "-"}</Td>
+                  <Td>{data.nik ? data.nik : "-"}</Td>
                   <Td>{data.isActive ? "active" : "inactive"}</Td>
                   <Td>
                     <div className="flex gap-2 justify-center items-center">
@@ -113,4 +104,4 @@ const LandOwnerList = () => {
   );
 };
 
-export default LandOwnerList;
+export default UmkmList;

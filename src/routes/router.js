@@ -6,6 +6,9 @@ import LandOwnerForm from "../pages/Dashboard/LandOwner/LandOwnerForm";
 import LandOwnerList from "../pages/Dashboard/LandOwner/LandOwnerList";
 import LandOwnerEdit from "../pages/Dashboard/LandOwner/LandOwnerEdit";
 import AdminMenu from "../pages/Dashboard/Admin/AdminMenu";
+import UmkmMenu from "../pages/Dashboard/Umkm/UmkmMenu";
+import UmkmList from "../pages/Dashboard/Umkm/UmkmList";
+import UmkmEditForm from "../pages/Dashboard/Umkm/UmkmEditForm";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +40,20 @@ export const router = createBrowserRouter([
       {
         path: "admin",
         Component: AdminMenu,
+      },
+      {
+        path: "umkm",
+        Component: UmkmMenu,
+        children: [
+          {
+            index: true,
+            Component: UmkmList,
+          },
+          {
+            path: "edit",
+            Component: UmkmEditForm,
+          },
+        ],
       },
     ],
   },
