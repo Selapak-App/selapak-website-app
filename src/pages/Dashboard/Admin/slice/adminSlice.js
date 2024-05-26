@@ -75,11 +75,45 @@ export const setAdminInactiveAction = createAsyncThunk(
   }
 );
 
+export const getAllBusinessTypeAction = createAsyncThunk(
+  "businessType/getAll",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await service.getAllBusinessType();
+      if (res) {
+        return res;
+      } else {
+        throw new Error("Get business type failed");
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const createBusinessTypeAction = createAsyncThunk(
+  "businessType/create",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await service.createNewBusinessType(payload);
+      if (res) {
+        await thunkAPI.dispatch(getAllBusinessTypeAction()).unwrap();
+        return res;
+      } else {
+        throw new Error("Get business type failed");
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 const adminSlice = createSlice({
   name: "admin",
   initialState: {
     isLoading: false,
     admins: [],
+    businessType: [],
     message: "",
   },
   extraReducers: (builder) => {
@@ -126,6 +160,35 @@ const adminSlice = createSlice({
       state.message = payload.message;
     });
     builder.addCase(setAdminInactiveAction.rejected, (state) => {
+      state.isLoading = true;
+      state.message = "Failed set admin status";
+    });
+    builder.addCase(getAllBusinessTypeAction.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(
+      getAllBusinessTypeAction.fulfilled,
+      (state, { payload }) => {
+        state.isLoading = false;
+        state.message = payload.message;
+        state.businessType = payload.data;
+      }
+    );
+    builder.addCase(getAllBusinessTypeAction.rejected, (state) => {
+      state.isLoading = true;
+      state.message = "Failed get all data";
+    });
+    builder.addCase(createBusinessTypeAction.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(
+      createBusinessTypeAction.fulfilled,
+      (state, { payload }) => {
+        state.isLoading = false;
+        state.message = payload.message;
+      }
+    );
+    builder.addCase(createBusinessTypeAction.rejected, (state) => {
       state.isLoading = true;
       state.message = "Failed set admin status";
     });

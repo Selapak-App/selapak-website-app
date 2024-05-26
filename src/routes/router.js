@@ -9,6 +9,10 @@ import AdminMenu from "../pages/Dashboard/Admin/AdminMenu";
 import UmkmMenu from "../pages/Dashboard/Umkm/UmkmMenu";
 import UmkmList from "../pages/Dashboard/Umkm/UmkmList";
 import UmkmEditForm from "../pages/Dashboard/Umkm/UmkmEditForm";
+import LandMenu from "../pages/Dashboard/Land/LandMenu";
+import LandList from "../pages/Dashboard/Land/LandList";
+import LandDetail from "../pages/Dashboard/Land/LandDetail";
+import LandForm from "../pages/Dashboard/Land/LandForm";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +56,24 @@ export const router = createBrowserRouter([
           {
             path: "edit",
             Component: UmkmEditForm,
+          },
+        ],
+      },
+      {
+        path: "land",
+        Component: LandMenu,
+        children: [
+          {
+            index: true,
+            Component: LandList,
+          },
+          {
+            path: "detail",
+            Component: LandDetail,
+          },
+          {
+            path: "form",
+            Component: LandForm,
           },
         ],
       },

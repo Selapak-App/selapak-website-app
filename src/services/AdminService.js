@@ -57,10 +57,40 @@ export const AdminService = () => {
     }
   };
 
+  const createNewBusinessType = async (payload) => {
+    try {
+      const res = await axiosInstance.post("/business-types", payload);
+      if (res.status == 201) {
+        return res.data;
+      } else {
+        throw new Error("Unexpected response status: " + res.status);
+      }
+    } catch (e) {
+      console.error("Error in login service:", e.message);
+      throw new Error(e.message);
+    }
+  };
+
+  const getAllBusinessType = async () => {
+    try {
+      const res = await axiosInstance.get("/business-types");
+      if (res.status == 200) {
+        return res.data;
+      } else {
+        throw new Error("Unexpected response status: " + res.status);
+      }
+    } catch (e) {
+      console.error("Error in login service:", e.message);
+      throw new Error(e.message);
+    }
+  };
+
   return {
     register,
     getAll,
     setActive,
     setIncative,
+    getAllBusinessType,
+    createNewBusinessType,
   };
 };
