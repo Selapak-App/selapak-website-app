@@ -13,6 +13,10 @@ import LandMenu from "../pages/Dashboard/Land/LandMenu";
 import LandList from "../pages/Dashboard/Land/LandList";
 import LandDetail from "../pages/Dashboard/Land/LandDetail";
 import LandForm from "../pages/Dashboard/Land/LandForm";
+import TransactionMenu from "../pages/Dashboard/Transaction/TransactionMenu";
+import TransactionList from "../pages/Dashboard/Transaction/TransactionList";
+import TransactionDetail from "../pages/Dashboard/Transaction/TransactionDetail";
+import Overview from "../pages/Dashboard/Overview/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +27,10 @@ export const router = createBrowserRouter([
     path: "dashboard",
     Component: Dashboard,
     children: [
+      {
+        index: true,
+        Component: Overview,
+      },
       {
         path: "owner",
         Component: LandOwnerMenu,
@@ -74,6 +82,20 @@ export const router = createBrowserRouter([
           {
             path: "form",
             Component: LandForm,
+          },
+        ],
+      },
+      {
+        path: "transaction",
+        Component: TransactionMenu,
+        children: [
+          {
+            index: true,
+            Component: TransactionList,
+          },
+          {
+            path: "detail",
+            Component: TransactionDetail,
           },
         ],
       },

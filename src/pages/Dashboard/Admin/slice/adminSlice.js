@@ -108,12 +108,29 @@ export const createBusinessTypeAction = createAsyncThunk(
   }
 );
 
+export const getDashboardDataAction = createAsyncThunk(
+  "dashboard/getData",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await service.getDashboardData();
+      if (res) {
+        return res;
+      } else {
+        throw new Error("Get dashboard data failed");
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 const adminSlice = createSlice({
   name: "admin",
   initialState: {
     isLoading: false,
     admins: [],
     businessType: [],
+    dashboard: [],
     message: "",
   },
   extraReducers: (builder) => {
@@ -149,7 +166,7 @@ const adminSlice = createSlice({
       state.message = payload.message;
     });
     builder.addCase(setAdminActiveAction.rejected, (state) => {
-      state.isLoading = true;
+      state.isLoading = false;
       state.message = "Failed set admin status";
     });
     builder.addCase(setAdminInactiveAction.pending, (state) => {
@@ -160,7 +177,7 @@ const adminSlice = createSlice({
       state.message = payload.message;
     });
     builder.addCase(setAdminInactiveAction.rejected, (state) => {
-      state.isLoading = true;
+      state.isLoading = false;
       state.message = "Failed set admin status";
     });
     builder.addCase(getAllBusinessTypeAction.pending, (state) => {
@@ -175,7 +192,7 @@ const adminSlice = createSlice({
       }
     );
     builder.addCase(getAllBusinessTypeAction.rejected, (state) => {
-      state.isLoading = true;
+      state.isLoading = false;
       state.message = "Failed get all data";
     });
     builder.addCase(createBusinessTypeAction.pending, (state) => {
@@ -189,8 +206,19 @@ const adminSlice = createSlice({
       }
     );
     builder.addCase(createBusinessTypeAction.rejected, (state) => {
-      state.isLoading = true;
+      state.isLoading = false;
       state.message = "Failed set admin status";
+    });
+    builder.addCase(getDashboardDataAction.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getDashboardDataAction.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.dashboard = payload.data;
+      state.message = payload.message;
+    });
+    builder.addCase(getDashboardDataAction.rejected, (state) => {
+      state.isLoading = false;
     });
   },
 });

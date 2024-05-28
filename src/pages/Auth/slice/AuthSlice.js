@@ -22,7 +22,7 @@ export const loginAction = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: "login",
+  name: "auth",
   initialState: {
     email: "",
     id: "",
