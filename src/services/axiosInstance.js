@@ -7,6 +7,13 @@ const axiosInstance = axios.create({
   },
 });
 
+export const axiosInstanceFormData = axios.create({
+  baseURL: "http://localhost:8080/api",
+  // headers: {
+  //   "Content-Type": "multipart/form-data",
+  // },
+});
+
 axiosInstance.interceptors.request.use(
   async (config) => {
     const token = localStorage.getItem("token");
