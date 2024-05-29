@@ -17,11 +17,16 @@ import TransactionMenu from "../pages/Dashboard/Transaction/TransactionMenu";
 import TransactionList from "../pages/Dashboard/Transaction/TransactionList";
 import TransactionDetail from "../pages/Dashboard/Transaction/TransactionDetail";
 import Overview from "../pages/Dashboard/Overview/Overview";
+import Home from "../pages/LandingPage/Home/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Login,
+  },
+  {
+    path: "/landing",
+    Component: Home,
   },
   {
     path: "dashboard",
