@@ -1,11 +1,13 @@
 import axiosInstance from "./axiosInstance";
 
 const LandOwnerService = () => {
-  const getAll = async () => {
+  const getAll = async (payload) => {
     try {
-      const res = await axiosInstance.get("/land-owners");
+      const res = await axiosInstance.get(
+        `/land-owners?page=${payload ? payload : 1}`
+      );
       if (res.status == 200) {
-        return res.data.data.content;
+        return res.data;
       } else {
         throw new Error("Unexpected response status: " + res.status);
       }

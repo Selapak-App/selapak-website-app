@@ -7,7 +7,7 @@ export const getAllTrxAction = createAsyncThunk(
   "trx/getAll",
   async (payload, thunkAPI) => {
     try {
-      const res = await service.getAllTrx();
+      const res = await service.getAllTrx(payload);
       if (res) {
         return res;
       } else {
@@ -117,6 +117,7 @@ const transactionSlice = createSlice({
     message: "",
     transactions: [],
     transaction: [],
+    paging: [],
   },
   reducers: {
     selectedTrx: (state, { payload }) => {
@@ -131,6 +132,7 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.transactions = payload.data.content;
       state.message = payload.message;
+      state.paging = payload.paging;
     });
     builder.addCase(getAllTrxAction.rejected, (state) => {
       state.isLoading = false;

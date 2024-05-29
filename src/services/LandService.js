@@ -1,9 +1,11 @@
 import axiosInstance, { axiosInstanceFormData } from "./axiosInstance";
 
 const LandService = () => {
-  const getAll = async () => {
+  const getAll = async (payload) => {
     try {
-      const res = await axiosInstance.get("/lands");
+      const res = await axiosInstance.get(
+        `/lands?page=${payload ? payload : 1}`
+      );
       if (res.status == 200) {
         return res.data;
       } else {

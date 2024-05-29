@@ -27,8 +27,8 @@ const AppSideBar = () => {
       >
         <div className="flex flex-col items-center gap-4 p-6">
           <div className="shrink-0">
-            <a
-              href="#"
+            <Link
+              to={`/dashboard`}
               className="relative flex h-20 w-20 items-center justify-center rounded-full text-white"
             >
               <img
@@ -37,7 +37,7 @@ const AppSideBar = () => {
                 title="user name"
                 className="w-full h-full"
               />
-            </a>
+            </Link>
           </div>
           <div className="flex min-h-[2rem] w-full min-w-0 flex-col items-start justify-center gap-0 text-center">
             <h4 className="w-full truncate text-slate-700 font-bold text-2xl">
@@ -135,10 +135,7 @@ const AppSideBar = () => {
           </div>
         </nav>
         <footer className="border-t border-slate-200 p-3">
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded p-3 text-slate-900 transition-colors hover:text-neutral-500 "
-          >
+          <div className="flex items-center gap-3 rounded p-3 text-slate-900 transition-colors hover:text-neutral-500 cursor-pointer">
             <div className="flex items-center self-center ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +160,7 @@ const AppSideBar = () => {
             >
               Logout
             </div>
-          </a>
+          </div>
         </footer>
       </aside>
     </>
