@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
 	return (
-		<div className="h-[10vh] font-poppins flex justify-between items-center bg-white text-dark w-full shadow-lg fixed px-container">
+		<div className="h-[10vh] font-poppins z-50 flex justify-between items-center bg-white text-dark w-full shadow-lg fixed px-container">
 			<Link to={"/"}>
 				<h2 className="text-2xl font-bold font-poppins">Selapak.</h2>
 			</Link>

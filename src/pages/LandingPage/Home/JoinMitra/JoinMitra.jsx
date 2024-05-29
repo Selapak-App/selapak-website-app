@@ -7,7 +7,7 @@ const JoinMitra = () => {
 			<div className="max-w-[840px] flex flex-col gap-12">
 				<div className="pb-5">
 					<h2 className="text-center font-bold text-5xl font-raleway">
-						Join Mitra
+						Gabung Mitra
 					</h2>
 				</div>
 				<div className="flex gap-10">
@@ -24,7 +24,7 @@ const JoinMitra = () => {
 							potensi lahan dan penghasilan tambahan dengan mudah.
 						</p>
 						<Link to={"#"} className="mt-4">
-							<buton className="py-2 px-6 bg-dark text-white hover:ps-12 ease-in-out transition-all duration-300 rounded-3xl">
+							<buton className="py-2 px-6 bg-dark text-white hover:ps-20 ease-in-out transition-all duration-300 rounded-3xl">
 								Bergabung
 							</buton>
 						</Link>
@@ -42,7 +42,7 @@ const JoinMitra = () => {
 							UMKM untuk menyewa lahan dengan percaya diri.
 						</p>
 						<Link to={"#"} className="mt-4">
-							<buton className="py-2 px-6 bg-dark text-white hover:ps-12 ease-in-out transition-all duration-300 rounded-3xl">
+							<buton className="py-2 px-6 bg-dark text-white hover:ps-20 ease-in-out transition-all duration-300 rounded-3xl">
 								Bergabung
 							</buton>
 						</Link>

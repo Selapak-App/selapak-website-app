@@ -1,3 +1,5 @@
+import Cta from "./Cta/Cta";
+import Footer from "./Footer/Footer";
 import JoinMitra from "./JoinMitra/JoinMitra";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import NavBar from "./NavBar/NavBar";
@@ -12,6 +14,7 @@ const Home = () => {
             <JoinMitra />
             <Product />
             <Pillar />
+            <Footer />
 		</>
 	);
 };
