@@ -1,7 +1,13 @@
 import Jumbotron from "./Jumbotron/Jumbotron";
+import NavBar from "./NavBar/NavBar";
 
 const Home = () => {
-	return <Jumbotron />;
+	return (
+		<>
+			<NavBar />
+			<Jumbotron />
+		</>
+	);
 };
 
 export default Home;

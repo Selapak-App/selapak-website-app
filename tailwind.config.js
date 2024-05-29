@@ -9,6 +9,9 @@ export default {
 				jumboImg:
 					'url("https://www.atursaja.com/wp-content/uploads/2020/07/gambar-1-usaha-pinggir-jalan-kampung.png")',
 			},
+			padding: {
+				container: "144px",
+			},
 			fontFamily: {
 				poppins: ["Poppins", "ui-sans-serif"],
 				raleway: ["Raleway", "ui-sans-serif"],
