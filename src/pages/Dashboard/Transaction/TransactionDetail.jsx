@@ -63,25 +63,25 @@ const TransactionDetail = () => {
           <p className="font-extrabold text-dark text-xl">Detail Transaksi</p>
         </div>
         <div>
-          <p className="text-xl font-bold text-dark">Customer</p>
+          <p className="text-xl font-extrabold text-dark mb-2">Customer</p>
           <div className="flex w-1/2 justify-between">
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Nama</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Nama</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {transaction.customer.fullName
                   ? transaction.customer.fullName
                   : "-"}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Email</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Email</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {transaction.customer.email ? transaction.customer.email : "-"}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Nomor Hp</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Nomor Hp</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {transaction.customer.phoneNumber
                   ? transaction.customer.phoneNumber
                   : "-"}
@@ -91,19 +91,19 @@ const TransactionDetail = () => {
         </div>
         <div className="w-full border border-solid border-gray-300" />
         <div>
-          <p className="text-xl font-bold text-dark">Detail Bisnis</p>
+          <p className="text-xl font-extrabold text-dark mb-2">Detail Bisnis</p>
           <div className="flex flex-row">
             <div className="gap-2 basis-1/4">
-              <p className="font-bold text-lg text-gray-400">Nama Bisnis</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Nama Bisnis</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {transaction.business.businessName
                   ? transaction.business.businessName
                   : "-"}
               </p>
             </div>
             <div className="gap-2 basis-1/4">
-              <p className="font-bold text-lg text-gray-400">Tipe Bisnis</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Tipe Bisnis</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {transaction.business.businessType
                   ? transaction.business.businessType
                   : "-"}
@@ -111,8 +111,8 @@ const TransactionDetail = () => {
             </div>
           </div>
           <div className="gap-2 mt-2 mb-2">
-            <p className="font-bold text-lg text-gray-400">Deskripsi Bisnis</p>
-            <p className="font-semibold text-md text-slate-400 text-wrap text-justify">
+            <p className="font-bold text-lg text-dark">Deskripsi Bisnis</p>
+            <p className="font-semibold text-lg text-slate-400 text-wrap text-justify">
               {transaction.business.descripttion
                 ? transaction.business.descripttion
                 : "-"}
@@ -121,11 +121,11 @@ const TransactionDetail = () => {
         </div>
         <div className="w-full border border-solid border-gray-300" />
         <div>
-          <p className="text-xl font-bold text-dark">Lahan</p>
+          <p className="text-xl font-extrabold text-dark mb-2">Lahan</p>
           <div className="flex flex-row">
             <div className="gap-2 basis-1/4">
-              <p className="font-bold text-lg text-gray-400">Alamat</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Alamat</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {`${transaction.landPrice.land.address},${
                   transaction.landPrice.land.village
                     ? `${transaction.landPrice.land.village},`
@@ -138,8 +138,8 @@ const TransactionDetail = () => {
               </p>
             </div>
             <div className="gap-2 basis-1/4">
-              <p className="font-bold text-lg text-gray-400">Harga</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Harga</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {formattedToRp(transaction.landPrice.price)}
               </p>
             </div>
@@ -149,24 +149,24 @@ const TransactionDetail = () => {
         <div>
           <div className="flex w-1/2 justify-between">
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">
+              <p className="font-extrabold text-lg text-dark">
                 Tanggal Transaksi
               </p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-semibold text-lg text-slate-400">
                 {dayjs(transaction.createdAt).format("DD-MM-YYYY")}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">
+              <p className="font-extrabold text-lg text-dark">
                 Jumlah Pembelian
               </p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-semibold text-lg text-slate-400">
                 {transaction.quantity}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Total Tagihan</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-extrabold text-lg text-dark">Total Tagihan</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {formattedToRp(transaction.totalPayment)}
               </p>
             </div>

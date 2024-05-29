@@ -10,13 +10,15 @@ import {
   selectedOwner,
 } from "./slice/LandOwnerSlice";
 import Loading from "../../../components/Element/Loading";
-import { Pagination } from "flowbite-react";
+import { Pagination, Modal, Button } from "flowbite-react";
 
 const LandOwnerList = () => {
   const navigate = useNavigate();
   const { isLoading, owners, paging } = useSelector((state) => state.owner);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [idToDelete, setIdToDelete] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch(getAllOwnerAction(currentPage));
@@ -24,6 +26,11 @@ const LandOwnerList = () => {
 
   const navToForm = () => {
     navigate("/dashboard/owner/form");
+  };
+
+  const handleOpenModal = (id) => {
+    setIdToDelete(id);
+    setOpenModal(true);
   };
 
   const onPageChange = (page) => {
@@ -103,8 +110,8 @@ const LandOwnerList = () => {
                         <span>Edit</span>
                       </button>
                       <button
-                        onClick={() => handleDelete(data.id)}
-                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                        onClick={() => handleOpenModal(data.id)}
+                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
                       >
                         <span>Delete</span>
                       </button>
@@ -125,6 +132,25 @@ const LandOwnerList = () => {
           />
         </div>
       )}
+      <Modal show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal.Header>Hapus pemilik lahan?</Modal.Header>
+        <Modal.Body className="flex items-center justify-center gap-4">
+          <Button
+            color="blue"
+            className="w-20"
+            onClick={() => handleDelete(idToDelete)}
+          >
+            Ya
+          </Button>
+          <Button
+            color="red"
+            className="w-20"
+            onClick={() => setOpenModal(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

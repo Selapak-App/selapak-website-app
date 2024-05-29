@@ -36,7 +36,7 @@ const UmkmEditForm = () => {
       phoneNumber: umkm.phoneNumber ? umkm.phoneNumber : "",
       nik: umkm.nik ? umkm.nik : "",
       address: umkm.address ? umkm.address : "",
-      gender: umkm.gender ? umkm.address.toLowerCase() : "",
+      gender: umkm.gender ? umkm.gender : "",
     },
     resolver: yupResolver(updateUmkmSchema),
   });
