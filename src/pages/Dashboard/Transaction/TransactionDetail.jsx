@@ -4,21 +4,25 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import Loading from "../../../components/Element/Loading";
 import { approveTrxAction, rejectTrxAction } from "./slice/transactionSlice";
+import { useState } from "react";
+import { Button, Modal } from "flowbite-react";
 
 const TransactionDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { transaction, isLoading } = useSelector((state) => state.transaction);
   const { id } = useSelector((state) => state.auth);
+  const [openModalApprove, setOpenModalApprove] = useState(false);
+  const [openModalReject, setOpenModalReject] = useState(false);
   const formattedToRp = (number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(number);
   };
-  const handleApprove = async (data) => {
+  const handleApprove = async () => {
     try {
-      const payload = { trxId: data, body: { adminId: id } };
+      const payload = { trxId: transaction.id, body: { adminId: id } };
       const res = await dispatch(approveTrxAction(payload)).unwrap();
       if (res) {
         navigate(-1);
@@ -32,9 +36,9 @@ const TransactionDetail = () => {
   if (isLoading) {
     return <Loading />;
   }
-  const handleReject = async (data) => {
+  const handleReject = async () => {
     try {
-      const payload = { trxId: data, body: { adminId: id } };
+      const payload = { trxId: transaction.id, body: { adminId: id } };
       const res = await dispatch(rejectTrxAction(payload)).unwrap();
       if (res) {
         navigate(-1);
@@ -171,13 +175,13 @@ const TransactionDetail = () => {
         {transaction.verifyStatus === "PENDING" && (
           <div className="flex justify-between">
             <button
-              onClick={() => handleApprove(transaction.id)}
+              onClick={() => setOpenModalApprove(true)}
               className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-primary hover:bg-primary-darker focus:bg-primary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
             >
               <span>Approve</span>
             </button>
             <button
-              onClick={() => handleReject(transaction.id)}
+              onClick={() => setOpenModalReject(true)}
               className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-darker focus:bg-red-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
             >
               <span>Reject</span>
@@ -185,6 +189,36 @@ const TransactionDetail = () => {
           </div>
         )}
       </div>
+      <Modal show={openModalApprove} onClose={() => setOpenModalApprove(false)}>
+        <Modal.Header>Are you sure?</Modal.Header>
+        <Modal.Body className="flex items-center justify-center gap-4">
+          <Button color="blue" className="w-20" onClick={() => handleApprove()}>
+            Yes
+          </Button>
+          <Button
+            color="red"
+            className="w-20"
+            onClick={() => setOpenModalApprove(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Body>
+      </Modal>
+      <Modal show={openModalReject} onClose={() => setOpenModalReject(false)}>
+        <Modal.Header>Are you sure?</Modal.Header>
+        <Modal.Body className="flex items-center justify-center gap-4">
+          <Button color="blue" className="w-20" onClick={() => handleReject()}>
+            Yes
+          </Button>
+          <Button
+            color="red"
+            className="w-20"
+            onClick={() => setOpenModalReject(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

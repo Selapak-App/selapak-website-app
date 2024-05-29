@@ -3,7 +3,9 @@ import axiosInstance from "./axiosInstance";
 const TransactionService = () => {
   const getAllTrx = async (payload) => {
     try {
-      const res = await axiosInstance.get(`/transactions?page=${payload}`);
+      const res = await axiosInstance.get(
+        `/transactions?page=${payload ? payload : 1}`
+      );
       if (res.status == 200) {
         return res.data;
       } else {

@@ -271,12 +271,12 @@ const TransactionList = () => {
                         ? data.landPrice.land.address
                         : "-"}
                     </Td>
-                    <Td>{formattedToRp(data.totalPayment)}</Td>
                     <Td>
                       {data.rentPeriod.period
                         ? `${data.rentPeriod.period} Bulan`
                         : "-"}
                     </Td>
+                    <Td>{formattedToRp(data.totalPayment)}</Td>
                     <Td>{dayjs(data.createdAt).format("DD-MM-YYYY")}</Td>
                     <Td>{data.paymentStatus}</Td>
                     <Td>{data.verifyStatus}</Td>

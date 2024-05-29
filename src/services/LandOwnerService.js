@@ -3,7 +3,9 @@ import axiosInstance from "./axiosInstance";
 const LandOwnerService = () => {
   const getAll = async (payload) => {
     try {
-      const res = await axiosInstance.get(`/land-owners?page=${payload}`);
+      const res = await axiosInstance.get(
+        `/land-owners?page=${payload ? payload : 1}`
+      );
       if (res.status == 200) {
         return res.data;
       } else {
