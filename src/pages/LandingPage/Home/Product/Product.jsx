@@ -21,7 +21,7 @@ const Product = () => {
 						tanpa perlu khawatir tentang keamanan dan legalitas
 						lahan.
 					</p>
-					<Link to={"/"} className="bg-black rounded-md w-1/5">
+					<Link to={"/"} className="bg-black rounded-md w-1/4">
 						<img
 							src={images.playstore}
 							alt="playstore icon"

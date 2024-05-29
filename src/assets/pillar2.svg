@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="313px" height="176px" viewBox="0 0 313 176" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>innovation</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="313" height="176"></rect>
+    </defs>
+    <g id="Phase-2-Re-design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="About-us/-desktop" transform="translate(-683.000000, -2269.000000)">
+            <g id="component-/-card-/-spot-illustration-+-brand-accent-copy-2" transform="translate(683.000000, 2086.000000)">
+                <g id="innovation" transform="translate(0.000000, 183.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="container"></g>
+                    <g id="Group-7" mask="url(#mask-2)">
+                        <g transform="translate(101.000000, 6.000000)">
+                            <path d="M56,0 C25.0714694,0 0,24.6237646 0,55 L112,55 C112,24.6237646 86.9285306,0 56,0 M56,9.91642873 C77.8428289,9.91642873 96.171667,24.978915 100.784011,45.0823633 L11.2159895,45.0823633 C15.828333,24.978915 34.1571711,9.91642873 56,9.91642873" id="Fill-1" fill="#FFFFFF"></path>
+                            <path d="M56,110 C86.9285306,110 112,85.3755683 112,55 L0,55 C0,85.3755683 25.0714694,110 56,110" id="Fill-3" fill="#000000"></path>
+                            <path d="M56,109 C25.0714694,109 0,133.624305 0,164 L112,164 C112,133.624305 86.9285306,109 56,109" id="Fill-5" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
