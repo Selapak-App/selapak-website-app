@@ -1,6 +1,7 @@
 import JoinMitra from "./JoinMitra/JoinMitra";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import NavBar from "./NavBar/NavBar";
+import Product from "./Product/Product";
 
 const Home = () => {
 	return (
@@ -8,6 +9,7 @@ const Home = () => {
 			<NavBar />
 			<Jumbotron />
             <JoinMitra />
+            <Product />
 		</>
 	);
 };
