@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../../components/Element/Loading";
 import {
   deleteUmkmAction,
@@ -9,15 +9,17 @@ import {
 } from "./slice/umkmSlice";
 import Td from "../../../components/Element/Td";
 import Th from "../../../components/Element/Th";
+import { Pagination } from "flowbite-react";
 
 const UmkmList = () => {
   const navigate = useNavigate();
-  const { isLoading, umkmList } = useSelector((state) => state.umkm);
+  const { isLoading, umkmList, paging } = useSelector((state) => state.umkm);
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getAllUmkmAction());
-  }, [dispatch]);
+    dispatch(getAllUmkmAction(currentPage));
+  }, [dispatch, currentPage]);
 
   const handleDelete = async (id) => {
     try {
@@ -33,6 +35,11 @@ const UmkmList = () => {
   const handleSendEditToForm = (data) => {
     dispatch(selectedUmkm(data));
     navigate("/dashboard/umkm/edit");
+  };
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    dispatch(getAllUmkmAction(currentPage));
   };
 
   if (isLoading) {
@@ -100,6 +107,15 @@ const UmkmList = () => {
           </tbody>
         </table>
       </div>
+      {paging.totalPage > 1 && (
+        <div className="w-full mt-2 flex justify-center items-center">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={paging.totalPage}
+            onPageChange={onPageChange}
+          />
+        </div>
+      )}
     </>
   );
 };

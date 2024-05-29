@@ -7,7 +7,7 @@ export const getAllUmkmAction = createAsyncThunk(
   "umkm/getAll",
   async (payload, thunkAPI) => {
     try {
-      const res = await service.getAll();
+      const res = await service.getAll(payload);
       if (res) {
         return res;
       } else {
@@ -63,6 +63,7 @@ const umkmSlice = createSlice({
     umkmList: [],
     umkm: [],
     message: "",
+    paging: [],
   },
   reducers: {
     selectedUmkm: (state, { payload }) => {
@@ -77,6 +78,7 @@ const umkmSlice = createSlice({
       state.isLoading = false;
       state.umkmList = payload.data.content;
       state.message = payload.message;
+      state.paging = payload.paging;
     });
     builder.addCase(getAllUmkmAction.rejected, (state) => {
       state.isLoading = false;

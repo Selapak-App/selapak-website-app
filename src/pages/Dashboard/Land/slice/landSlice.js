@@ -7,7 +7,7 @@ export const getAllLandAction = createAsyncThunk(
   "land/getAll",
   async (payload, thunkAPI) => {
     try {
-      const res = await service.getAll();
+      const res = await service.getAll(payload);
       if (res) {
         return res;
       } else {
@@ -81,6 +81,7 @@ const landSlice = createSlice({
     message: "",
     land: [],
     lands: [],
+    paging: [],
   },
   reducers: {
     selectedLand: (state, { payload }) => {
@@ -95,6 +96,7 @@ const landSlice = createSlice({
       state.isLoading = false;
       state.lands = payload.data.content;
       state.message = payload.message;
+      state.paging = payload.paging;
     });
     builder.addCase(getAllLandAction.rejected, (state) => {
       state.isLoading = false;

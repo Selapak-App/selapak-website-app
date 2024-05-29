@@ -3,25 +3,32 @@ import Td from "../../../components/Element/Td";
 import Th from "../../../components/Element/Th";
 // import dummyData from "../../../data/dummyData";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   deleteOwnerAction,
   getAllOwnerAction,
   selectedOwner,
 } from "./slice/LandOwnerSlice";
 import Loading from "../../../components/Element/Loading";
+import { Pagination } from "flowbite-react";
 
 const LandOwnerList = () => {
   const navigate = useNavigate();
-  const { isLoading, owners } = useSelector((state) => state.owner);
+  const { isLoading, owners, paging } = useSelector((state) => state.owner);
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getAllOwnerAction());
-  }, [dispatch]);
+    dispatch(getAllOwnerAction(currentPage));
+  }, [dispatch, currentPage]);
 
   const navToForm = () => {
     navigate("/dashboard/owner/form");
+  };
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    dispatch(getAllOwnerAction(currentPage));
   };
   const handleDelete = async (id) => {
     try {
@@ -109,6 +116,15 @@ const LandOwnerList = () => {
           </tbody>
         </table>
       </div>
+      {paging.totalPage > 1 && (
+        <div className="w-full mt-2 flex justify-center items-center">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={paging.totalPage}
+            onPageChange={onPageChange}
+          />
+        </div>
+      )}
     </>
   );
 };

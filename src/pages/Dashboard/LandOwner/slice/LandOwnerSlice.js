@@ -7,7 +7,7 @@ export const getAllOwnerAction = createAsyncThunk(
   "owner/getAll",
   async (payload, thunkAPI) => {
     try {
-      const res = await service.getAll();
+      const res = await service.getAll(payload);
       if (res) {
         console.log("getAllOwnerAction response:", res);
         return res;
@@ -83,6 +83,7 @@ const landOwnerSlice = createSlice({
     isLoading: false,
     owners: [],
     owner: [],
+    paging: [],
     message: "",
   },
   reducers: {
@@ -95,9 +96,9 @@ const landOwnerSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getAllOwnerAction.fulfilled, (state, { payload }) => {
-      console.log("Payload in fulfilled:", payload);
-      state.owners = payload;
+      state.owners = payload.data.content;
       state.isLoading = false;
+      state.paging = payload.paging;
       state.message = "Success";
     });
     builder.addCase(getAllOwnerAction.rejected, (state) => {

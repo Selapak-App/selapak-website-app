@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,19 +11,26 @@ import Loading from "../../../components/Element/Loading";
 import Th from "../../../components/Element/Th";
 import Td from "../../../components/Element/Td";
 import dayjs from "dayjs";
+import { Pagination } from "flowbite-react";
 
 const TransactionList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoading, transactions, transaction } = useSelector(
+  const { isLoading, transactions, paging } = useSelector(
     (state) => state.transaction
   );
+  const [currentPage, setCurrentPage] = useState(1);
   // const [survey,setSurvey] = useState([])
   // const [validTrx,setValidTrx] = useState([])
 
   useEffect(() => {
-    dispatch(getAllTrxAction());
-  }, [dispatch]);
+    dispatch(getAllTrxAction(currentPage));
+  }, [dispatch, currentPage]);
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    dispatch(getAllTrxAction(currentPage));
+  };
 
   const trxYetToSurvey = transactions.filter(
     (transaction) =>
@@ -289,6 +296,15 @@ const TransactionList = () => {
             </tbody>
           </table>
         </div>
+        {paging.totalPage > 1 && (
+          <div className="w-full mt-2 flex justify-center items-center">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paging.totalPage}
+              onPageChange={onPageChange}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

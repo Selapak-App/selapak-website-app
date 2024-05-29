@@ -2,22 +2,29 @@ import { useNavigate } from "react-router-dom";
 import Td from "../../../components/Element/Td";
 import Th from "../../../components/Element/Th";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   deleteLandAction,
   getAllLandAction,
   selectedLand,
 } from "./slice/landSlice";
 import Loading from "../../../components/Element/Loading";
+import { Pagination } from "flowbite-react";
 
 const LandList = () => {
   const navigate = useNavigate();
-  const { isLoading, lands } = useSelector((state) => state.land);
+  const { isLoading, lands, paging } = useSelector((state) => state.land);
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getAllLandAction());
-  }, [dispatch]);
+    dispatch(getAllLandAction(currentPage));
+  }, [dispatch, currentPage]);
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    dispatch(getAllLandAction(currentPage));
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -102,12 +109,12 @@ const LandList = () => {
                         >
                           <span>Detail</span>
                         </button>
-                        <button
+                        {/* <button
                           // onClick={() => handleSendEditToForm(data)}
                           className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-secondary hover:bg-secondary-darker focus:bg-secondary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
                         >
                           <span>Edit</span>
-                        </button>
+                        </button> */}
                         <button
                           onClick={() => handleDelete(data.id)}
                           className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
@@ -121,6 +128,15 @@ const LandList = () => {
               })}
             </tbody>
           </table>
+        </div>
+      )}
+      {paging.totalPage > 1 && (
+        <div className="w-full mt-2 flex justify-center items-center">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={paging.totalPage}
+            onPageChange={onPageChange}
+          />
         </div>
       )}
     </>
