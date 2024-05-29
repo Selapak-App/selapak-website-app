@@ -6,7 +6,7 @@ const Pillar = () => {
 			<div className="max-w-[840px] flex flex-col gap-12 justify-center items-center">
 				<div className="pb-5">
 					<h2 className="text-center font-medium text-5xl font-raleway">
-						3 Pillar of <span className="font-bold">Selapak</span>
+						3 Pilar <span className="font-bold">Selapak</span>
 					</h2>
 				</div>
 				<div className="flex gap-10">

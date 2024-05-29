@@ -11,9 +11,11 @@ import pillar3 from "./pillar3.svg";
 import whatsapp from "./whatsapp.png";
 import logoWeb from "./logo web.png"
 import logoWebWhite from "./logo web white.png";
-import instagram from "./instagram.png"
+import instagram from "./instagram.png";
+import ambassador from "./ambassador.png";
 
 export default {
+	ambassador,
 	instagram,
 	logoWebWhite,
 	logoWeb,

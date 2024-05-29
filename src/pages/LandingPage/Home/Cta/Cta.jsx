@@ -4,7 +4,7 @@ const ADMIN_PHONE = import.meta.env.VITE_ADMIN_PHONE;
 
 const Cta = () => {
 	return (
-		<div className="w-full shadow-sm flex justify-center font-poppins">
+		<div className="w-full shadow-sm flex justify-center font-poppins animate-bounce">
 			<div className="max-w-[960px] w-full h-28 bg-primary -mt-24 mb-8 rounded-2xl shadow-2xl p-5 flex justify-between items-center">
 				<div className="flex items-center gap-3">
 					<img src={images.whatsapp} className="w-12" />

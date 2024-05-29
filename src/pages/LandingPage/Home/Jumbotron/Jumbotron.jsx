@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 const Jumbotron = () => {
 	return (
-		<div className="bg-jumboImg bg-cover bg-center">
-			<div className="h-screen bg-dark bg-opacity-50 flex items-center px-container">
+		<div className={`bg-jumboMarket bg-cover bg-center`}>
+			<div className="h-screen pt-[10vh] bg-dark bg-opacity-50 flex items-center px-container">
 				<div className="max-w-[820px] flex flex-col gap-6">
 					<h1 className="text-6xl font-raleway text-white font-bold">
-						Tumbuhkan Cita-Cita Anda di Lahan Terbaik
+						Tumbuhkan Cita-Cita Anda di Lahan Terbaik{" "}
 					</h1>
 					<div className="flex flex-row gap-6 font-poppins">
 						<Link to={"#id"}>

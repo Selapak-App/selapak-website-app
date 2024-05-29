@@ -6,8 +6,12 @@ export default {
 	theme: {
 		extend: {
 			backgroundImage: {
-				jumboImg:
+				jumboMarket:
 					'url("https://www.atursaja.com/wp-content/uploads/2020/07/gambar-1-usaha-pinggir-jalan-kampung.png")',
+				jumboShake:
+					'url("https://storage.googleapis.com/flip-prod-mktg-strapi/media-library/etika_bisnis_84a59b3f18/etika_bisnis_84a59b3f18.jpg")',
+				jumboBuilding: 'url("/src/assets/bg-building.jpg")',
+				ambassador: 'url("/src/assets/ambassador.png")',
 			},
 			padding: {
 				container: "144px",

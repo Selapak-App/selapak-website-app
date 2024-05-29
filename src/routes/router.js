@@ -18,6 +18,7 @@ import TransactionList from "../pages/Dashboard/Transaction/TransactionList";
 import TransactionDetail from "../pages/Dashboard/Transaction/TransactionDetail";
 import Overview from "../pages/Dashboard/Overview/Overview";
 import Home from "../pages/LandingPage/Home/Home";
+import AboutUs from "../pages/LandingPage/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
   {
     path: "/landing",
     Component: Home,
+  },
+  {
+    path: "/about",
+    Component: AboutUs,
   },
   {
     path: "dashboard",
