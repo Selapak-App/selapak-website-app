@@ -9,13 +9,15 @@ import {
 } from "./slice/umkmSlice";
 import Td from "../../../components/Element/Td";
 import Th from "../../../components/Element/Th";
-import { Pagination } from "flowbite-react";
+import { Pagination, Modal, Button } from "flowbite-react";
 
 const UmkmList = () => {
   const navigate = useNavigate();
   const { isLoading, umkmList, paging } = useSelector((state) => state.umkm);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [idToDelete, setIdToDelete] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch(getAllUmkmAction(currentPage));
@@ -30,6 +32,11 @@ const UmkmList = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleOpenModal = (id) => {
+    setIdToDelete(id);
+    setOpenModal(true);
   };
 
   const handleSendEditToForm = (data) => {
@@ -94,8 +101,8 @@ const UmkmList = () => {
                         <span>Edit</span>
                       </button>
                       <button
-                        onClick={() => handleDelete(data.id)}
-                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                        onClick={() => handleOpenModal(data.id)}
+                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
                       >
                         <span>Delete</span>
                       </button>
@@ -116,6 +123,25 @@ const UmkmList = () => {
           />
         </div>
       )}
+      <Modal show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal.Header>Hapus umkm?</Modal.Header>
+        <Modal.Body className="flex items-center justify-center gap-4">
+          <Button
+            color="blue"
+            className="w-20"
+            onClick={() => handleDelete(idToDelete)}
+          >
+            Ya
+          </Button>
+          <Button
+            color="red"
+            className="w-20"
+            onClick={() => setOpenModal(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

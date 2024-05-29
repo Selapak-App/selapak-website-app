@@ -9,13 +9,15 @@ import {
   selectedLand,
 } from "./slice/landSlice";
 import Loading from "../../../components/Element/Loading";
-import { Pagination } from "flowbite-react";
+import { Modal, Pagination, Button } from "flowbite-react";
 
 const LandList = () => {
   const navigate = useNavigate();
   const { isLoading, lands, paging } = useSelector((state) => state.land);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [idToDelete, setIdToDelete] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch(getAllLandAction(currentPage));
@@ -24,6 +26,11 @@ const LandList = () => {
   const onPageChange = (page) => {
     setCurrentPage(page);
     dispatch(getAllLandAction(currentPage));
+  };
+
+  const handleOpenModal = (id) => {
+    setIdToDelete(id);
+    setOpenModal(true);
   };
 
   if (isLoading) {
@@ -116,8 +123,8 @@ const LandList = () => {
                           <span>Edit</span>
                         </button> */}
                         <button
-                          onClick={() => handleDelete(data.id)}
-                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                          onClick={() => handleOpenModal(data.id)}
+                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
                         >
                           <span>Delete</span>
                         </button>
@@ -139,6 +146,25 @@ const LandList = () => {
           />
         </div>
       )}
+      <Modal show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal.Header>Hapus lahan ini?</Modal.Header>
+        <Modal.Body className="flex items-center justify-center gap-4">
+          <Button
+            color="blue"
+            className="w-20"
+            onClick={() => handleDelete(idToDelete)}
+          >
+            Ya
+          </Button>
+          <Button
+            color="red"
+            className="w-20"
+            onClick={() => setOpenModal(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

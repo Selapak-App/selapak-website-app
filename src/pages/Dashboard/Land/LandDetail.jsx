@@ -23,102 +23,104 @@ const LandDetail = () => {
   };
 
   return (
-    <div className="pt-4 px-4 w-full h-full shadow-md">
-      <div className="flex flex-col pt-4 px-4 pb-4 gap-4">
+    <div className="pt-4 px-4 w-full h-full shadow-md bg-white">
+      <div className="flex flex-col pt-4 px-4 pb-4 gap-6">
         <div className="flex gap-4 items-center">
           <ArrowLeftIcon
-            className="h-6 w-6 cursor-pointer font-extrabold"
+            className="h-6 w-6 cursor-pointer font-extrabold text-dark"
             onClick={() => navigate(-1)}
           />
           <p className="font-extrabold text-dark text-xl">Detail Lahan</p>
         </div>
         <div className="">
-          <p className="text-xl font-bold text-dark">Pemilik Lahan</p>
+          <p className="text-xl font-extrabold text-dark mb-2">Pemilik Lahan</p>
           <div className="flex w-1/2 justify-between">
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Nama</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Nama</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {land.landOwner.name}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Email</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Email</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {land.landOwner.email}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Nomor HP</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Nomor HP</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {land.landOwner.phoneNumber}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="w-full border border-solid border-gray-300 mt-2 mb-2" />
+        {/* <div className="w-full border border-solid border-gray-300 mt-2 mb-2" /> */}
 
         <div className="">
-          <p className="text-xl font-bold text-dark">Alamat</p>
-          <p className="font-bold text-lg text-gray-400">{`${land.address},${
-            land.village ? `${land.village},` : ""
-          }${land.district ? `${land.district},` : ""}${land.postalCode}`}</p>
+          <p className="text-xl font-extrabold text-dark">Alamat</p>
+          <p className="font-semibold text-xl text-gray-400">{`${
+            land.address
+          },${land.village ? `${land.village},` : ""}${
+            land.district ? `${land.district},` : ""
+          }${land.postalCode}`}</p>
         </div>
 
-        <div className="w-full border border-solid border-gray-300 mt-2 mb-2" />
+        {/* <div className="w-full border border-solid border-gray-300 mt-2 mb-2" /> */}
 
         <div className="w-1/2 text-wrap">
-          <p className="text-xl font-bold text-dark">Deskripsi</p>
-          <p className="font-bold text-lg text-gray-400 text-justify indent-px">
+          <p className="text-xl font-extrabold text-dark">Deskripsi</p>
+          <p className="font-semibold text-xl text-gray-400 text-justify indent-px">
             {land.description}
           </p>
         </div>
 
-        <div className="w-full border border-solid border-gray-300 mt-2 mb-2" />
+        {/* <div className="w-full border border-solid border-gray-300 mt-2 mb-2" /> */}
 
         <div className="">
-          <p className="text-xl font-bold text-dark">Info Lahan</p>
+          <p className="text-xl font-extrabold text-dark mb-2">Info Lahan</p>
           <div className="flex w-1/2 justify-between">
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Luas Per SLot</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Luas Per SLot</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {land.slotArea}m
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Total Slot</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Total Slot</p>
+              <p className="font-semibold text-lg text-slate-400">
                 Rp.{land.landPrice.price}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Total Slot</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Total Slot</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {land.totalSlot}
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-gray-400">Slot Tersedia</p>
-              <p className="font-semibold text-md text-slate-400">
+              <p className="font-bold text-lg text-dark">Slot Tersedia</p>
+              <p className="font-semibold text-lg text-slate-400">
                 {land.slotAvailable}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="w-full border border-solid border-gray-300 mt-2 mb-2" />
+        {/* <div className="w-full border border-solid border-gray-300 mt-2 mb-2" /> */}
 
         <div className="">
-          <p className="text-xl font-bold text-dark">Rekomendasi Bisnis</p>
-          <p className="font-bold text-lg text-gray-400 text-justify indent-px">
+          <p className="text-xl font-extrabold text-dark">Rekomendasi Bisnis</p>
+          <p className="font-bold text-xl text-gray-400 text-justify indent-px">
             {businessRecommend}
           </p>
         </div>
 
-        <div className="w-full border border-solid border-gray-300 mt-2 mb-2" />
+        {/* <div className="w-full border border-solid border-gray-300 mt-2 mb-2" /> */}
 
         <div className="">
-          <p className="text-xl font-bold text-dark">Foto Lahan</p>
+          <p className="text-xl font-extrabold text-dark">Foto Lahan</p>
           <div className="flex flex-wrap gap-4">
             {land.landPhotos.map((item, idx) => {
               return (
