@@ -42,6 +42,7 @@ const LandList = () => {
       const res = await dispatch(deleteLandAction(id)).unwrap();
       if (res) {
         console.log(res);
+        setOpenModal(false);
       } else {
         console.log("error di func delete");
       }
@@ -122,12 +123,14 @@ const LandList = () => {
                         >
                           <span>Edit</span>
                         </button> */}
-                        <button
-                          onClick={() => handleOpenModal(data.id)}
-                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
-                        >
-                          <span>Delete</span>
-                        </button>
+                        {data.isActive && (
+                          <button
+                            onClick={() => handleOpenModal(data.id)}
+                            className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                          >
+                            <span>Delete</span>
+                          </button>
+                        )}
                       </div>
                     </Td>
                   </tr>

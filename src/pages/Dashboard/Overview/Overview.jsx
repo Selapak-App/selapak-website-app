@@ -97,7 +97,7 @@ const Overview = () => {
                 </div>
               </div>
             </div>
-            <div className="shadown-lg basis-1/3 bg-[#fcca46] rounded-md">
+            <div className="shadown-lg basis-1/3 bg-[#ff9e00] rounded-md">
               <div className="p-6 flex justify-between items-center">
                 <div className="text-white">
                   <p className="font-bold text-3xl mb-2">
@@ -105,7 +105,7 @@ const Overview = () => {
                   </p>
                   <p className="font-bold text-xl tracking-wider">Lahan</p>
                 </div>
-                <div className="bg-[#a1c181] rounded-full">
+                <div className="bg-[#240046] rounded-full">
                   <HiOutlineOfficeBuilding className="p-2 h-16 w-16 text-white" />
                 </div>
               </div>

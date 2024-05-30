@@ -28,6 +28,7 @@ const UmkmList = () => {
       const res = await dispatch(deleteUmkmAction(id)).unwrap();
       if (res) {
         console.log(res);
+        setOpenModal(false);
       }
     } catch (e) {
       console.log(e);
@@ -93,20 +94,24 @@ const UmkmList = () => {
                   <Td>{data.nik ? data.nik : "-"}</Td>
                   <Td>{data.isActive ? "active" : "inactive"}</Td>
                   <Td>
-                    <div className="flex gap-2 justify-center items-center">
-                      <button
-                        onClick={() => handleSendEditToForm(data)}
-                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-secondary hover:bg-secondary-darker focus:bg-secondary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
-                      >
-                        <span>Edit</span>
-                      </button>
-                      <button
-                        onClick={() => handleOpenModal(data.id)}
-                        className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
-                      >
-                        <span>Delete</span>
-                      </button>
-                    </div>
+                    {!data.isActive ? (
+                      "-"
+                    ) : (
+                      <div className="flex gap-2 justify-center items-center">
+                        <button
+                          onClick={() => handleSendEditToForm(data)}
+                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-secondary hover:bg-secondary-darker focus:bg-secondary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                        >
+                          <span>Edit</span>
+                        </button>
+                        <button
+                          onClick={() => handleOpenModal(data.id)}
+                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                        >
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    )}
                   </Td>
                 </tr>
               );
