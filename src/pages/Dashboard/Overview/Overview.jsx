@@ -14,10 +14,8 @@ const Overview = () => {
   const { dashboard, isLoading } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("hit api");
     dispatch(getDashboardDataAction());
   }, [dispatch]);
-  console.log("data dashboard: ", dashboard);
   if (isLoading) {
     return <Loading />;
   }

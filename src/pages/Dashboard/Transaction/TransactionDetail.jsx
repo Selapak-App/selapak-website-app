@@ -10,10 +10,13 @@ import { Button, Modal } from "flowbite-react";
 const TransactionDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { transaction, isLoading } = useSelector((state) => state.transaction);
-  const { id } = useSelector((state) => state.auth);
+  const { transaction, isLoading, message } = useSelector(
+    (state) => state.transaction
+  );
+  // const { id } = useSelector((state) => state.auth);
   const [openModalApprove, setOpenModalApprove] = useState(false);
   const [openModalReject, setOpenModalReject] = useState(false);
+  const adminId = localStorage.getItem("adminId");
   const formattedToRp = (number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -22,12 +25,15 @@ const TransactionDetail = () => {
   };
   const handleApprove = async () => {
     try {
-      const payload = { trxId: transaction.id, body: { adminId: id } };
+      const payload = { trxId: transaction.id, body: { adminId: adminId } };
       const res = await dispatch(approveTrxAction(payload)).unwrap();
       if (res) {
+        setOpenModalApprove(false);
         navigate(-1);
       } else {
         console.log("Error approve");
+        setOpenModalApprove(false);
+        alert(message);
       }
     } catch (e) {
       console.log(e);
@@ -38,14 +44,19 @@ const TransactionDetail = () => {
   }
   const handleReject = async () => {
     try {
-      const payload = { trxId: transaction.id, body: { adminId: id } };
+      const payload = { trxId: transaction.id, body: { adminId: adminId } };
       const res = await dispatch(rejectTrxAction(payload)).unwrap();
       if (res) {
+        setOpenModalReject(false);
         navigate(-1);
       } else {
         console.log("Error reject");
+        setOpenModalReject(false);
+        alert(message);
       }
     } catch (e) {
+      setOpenModalReject(false);
+      alert(`error message : ${message}`);
       console.log(e);
     }
   };

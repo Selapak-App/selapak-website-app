@@ -153,8 +153,9 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.message = payload.message;
     });
-    builder.addCase(approveTrxAction.rejected, (state) => {
+    builder.addCase(approveTrxAction.rejected, (state, { payload }) => {
       state.isLoading = false;
+      state.message = payload.message;
     });
     builder.addCase(rejectTrxAction.pending, (state) => {
       state.isLoading = true;
@@ -163,8 +164,9 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.message = payload.message;
     });
-    builder.addCase(rejectTrxAction.rejected, (state) => {
+    builder.addCase(rejectTrxAction.rejected, (state, { payload }) => {
       state.isLoading = false;
+      state.message = payload.message;
     });
     builder.addCase(doneSurveyTrxAction.pending, (state) => {
       state.isLoading = true;

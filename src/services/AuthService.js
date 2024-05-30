@@ -8,6 +8,7 @@ export const AuthService = () => {
         const token = res.data.data.token;
         localStorage.setItem("token", token);
         localStorage.setItem("role", res.data.data.role);
+        localStorage.setItem("adminId", res.data.data.id);
         return res.data.data;
       } else {
         throw new Error("Unexpected response status: " + res.status);

@@ -22,6 +22,13 @@ const LandDetail = () => {
     setSelectedImage("");
   };
 
+  const formattedToRp = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
+
   return (
     <div className="pt-4 px-4 w-full h-full shadow-md bg-white">
       <div className="flex flex-col pt-4 px-4 pb-4 gap-6">
@@ -88,9 +95,9 @@ const LandDetail = () => {
               </p>
             </div>
             <div className="gap-2">
-              <p className="font-bold text-lg text-dark">Total Slot</p>
+              <p className="font-bold text-lg text-dark">Harga</p>
               <p className="font-semibold text-lg text-slate-400">
-                Rp.{land.landPrice.price}
+                {formattedToRp(land.landPrice.price)}
               </p>
             </div>
             <div className="gap-2">

@@ -13,12 +13,14 @@ const Dashboard = () => {
   }, [navigate]);
   return (
     <>
-      <div className="flex w-full h-[100vh]">
+      <div className="flex w-full h-screen">
         <AppSideBar />
-        <main className="w-full flex-grow bg-slate-50">
+        <div className="flex flex-col w-full">
           <Header />
-          <Outlet />
-        </main>
+          <main className="flex-grow overflow-y-auto bg-slate-50">
+            <Outlet />
+          </main>
+        </div>
       </div>
     </>
   );
