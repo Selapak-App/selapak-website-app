@@ -234,7 +234,7 @@ const TransactionList = () => {
         <div className="flex items-center mb-4">
           <h1 className="text-dark font-bold">Transaksi</h1>
         </div>
-        <div className="w-full overflow-x-auto">
+        <div className="w-full">
           <table
             className="w-full border border-collapse rounded sm:border-separate border-slate-200 text-center"
             cellSpacing="0"

@@ -3,8 +3,8 @@ import images from "../../../../assets/images";
 
 const Product = () => {
 	return (
-		<div className="flex justify-center items-center h-[100vh] px-container bg-jumboImg bg-cover bg-fixed">
-			<div className="h-[55vh] w-full bg-white rounded-3xl p-10 flex gap-20 justify-between items-center">
+		<div className="flex justify-center items-center h-[100vh] px-container bg-jumboShake bg-cover bg-fixed">
+			<div className="h-[55vh] w-full bg-white rounded-3xl p-10 flex gap-20 justify-between items-center shadow-2xl">
 				<div className="w-2/3 flex flex-col gap-8">
 					<div className="flex gap-10 group">
 						<div className="w-2 bg-primary group-hover:w-5 ease-in-out transition-all duration-300" />

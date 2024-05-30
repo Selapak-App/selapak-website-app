@@ -15,7 +15,7 @@ const NavBar = () => {
                     <button>Mitra Lapak</button>
                     <div className="bg-secondary h-0.5 w-0 group-hover:w-3/4 ease-in-out transition-all duration-300" />
                 </Link>
-                <Link to={"#"} className="group flex flex-col gap-1">
+                <Link to={"/umkm"} className="group flex flex-col gap-1">
                     <button>Mitra UMKM</button>
                     <div className="bg-secondary h-0.5 w-0 group-hover:w-3/4 ease-in-out transition-all duration-300" />
                 </Link>

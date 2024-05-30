@@ -67,7 +67,7 @@ const Footer = () => {
 					</div>
 					<div>
 						Copyright &copy; 2024 - Powered By
-						<span className="font-semibold"> Selapak Team</span>
+						<span className="font-semibold text-secondary"> Selapak Team</span>
 					</div>
 				</div>
 			</div>

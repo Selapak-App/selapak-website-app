@@ -1,17 +1,17 @@
-import Footer from "../Home/Footer/Footer";
 import NavBar from "../Home/NavBar/NavBar";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import Requirement from "./Requirement/Requirement";
+import Footer from "../Home/Footer/Footer";
 
-const MitraLapak = () => {
+const MitraUMKM = () => {
 	return (
 		<>
 			<NavBar />
 			<Jumbotron />
-            <Requirement />
+			<Requirement />
 			<Footer />
 		</>
 	);
 };
 
-export default MitraLapak;
+export default MitraUMKM;

@@ -7,9 +7,11 @@ export default {
 		extend: {
 			backgroundImage: {
 				jumboMarket:
-					'url("https://www.atursaja.com/wp-content/uploads/2020/07/gambar-1-usaha-pinggir-jalan-kampung.png")',
+					'url("https://accesslogistik.com/wp-content/uploads/2023/12/1758566673.jpg")',
 				jumboShake:
 					'url("https://storage.googleapis.com/flip-prod-mktg-strapi/media-library/etika_bisnis_84a59b3f18/etika_bisnis_84a59b3f18.jpg")',
+				jumboShake2:
+					'url("https://png.pngtree.com/thumb_back/fh260/background/20210902/pngtree-hand-gesture-handshake-cooperation-technology-business-photography-map-map-business-people-image_789752.jpg")',
 				jumboBuilding: 'url("/src/assets/bg-building.jpg")',
 				ambassador: 'url("/src/assets/ambassador.png")',
 			},

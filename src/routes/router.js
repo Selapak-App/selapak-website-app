@@ -20,6 +20,7 @@ import Overview from "../pages/Dashboard/Overview/Overview";
 import Home from "../pages/LandingPage/Home/Home";
 import AboutUs from "../pages/LandingPage/AboutUs/AboutUs";
 import MitraLapak from "../pages/LandingPage/MitraLapak/MitraLapak";
+import MitraUMKM from "../pages/LandingPage/MitraUMKM/MitraUMKM";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
   {
     path: "/lapak",
     Component: MitraLapak,
+  },
+  {
+    path: "/umkm",
+    Component: MitraUMKM,
   },
   {
     path: "dashboard",

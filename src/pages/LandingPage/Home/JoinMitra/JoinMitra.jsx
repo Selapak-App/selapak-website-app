@@ -23,7 +23,7 @@ const JoinMitra = () => {
 							bergabung bersama kami, Anda dapat mengoptimalkan
 							potensi lahan dan penghasilan tambahan dengan mudah.
 						</p>
-						<Link to={"#"} className="mt-4">
+						<Link to={"/umkm"} className="mt-4">
 							<buton className="py-2 px-6 bg-dark text-white hover:ps-20 ease-in-out transition-all duration-300 rounded-3xl">
 								Bergabung
 							</buton>
@@ -41,7 +41,7 @@ const JoinMitra = () => {
 							diragukan lagi! Kami hadir sebagai solusi bagi para
 							UMKM untuk menyewa lahan dengan percaya diri.
 						</p>
-						<Link to={"#"} className="mt-4">
+						<Link to={"/lapak"} className="mt-4">
 							<buton className="py-2 px-6 bg-dark text-white hover:ps-20 ease-in-out transition-all duration-300 rounded-3xl">
 								Bergabung
 							</buton>
