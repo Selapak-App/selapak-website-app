@@ -24,11 +24,11 @@ import MitraUMKM from "../pages/LandingPage/MitraUMKM/MitraUMKM";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     Component: Login,
   },
   {
-    path: "/landing",
+    path: "/",
     Component: Home,
   },
   {

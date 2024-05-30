@@ -16,7 +16,7 @@ const AppSideBar = () => {
   const handleLogout = () => {
     dispatch(logout);
     localStorage.clear();
-    window.location.replace("/");
+    window.location.replace("/login");
   };
   return (
     <>

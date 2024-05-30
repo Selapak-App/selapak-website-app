@@ -8,7 +8,7 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout);
     localStorage.clear();
-    window.location.replace("/");
+    window.location.replace("/login");
   };
   return (
     <div className="w-full border-b shadow-lg border-b-1 border-slate-200 bg-white/90 shadow-slate-700/5">
