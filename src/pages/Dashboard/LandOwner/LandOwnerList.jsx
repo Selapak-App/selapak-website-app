@@ -78,56 +78,62 @@ const LandOwnerList = () => {
           <span>Add</span>
         </button>
       </div>
-      <div className="w-full overflow-x-auto">
-        <table
-          className="w-full border border-collapse rounded sm:border-separate border-slate-200 text-center"
-          cellSpacing="0"
-        >
-          <tbody>
-            <tr>
-              <Th>No</Th>
-              <Th>Nama</Th>
-              <Th>Email</Th>
-              <Th>Nomor HP</Th>
-              <Th>NIK</Th>
-              <Th>Status</Th>
-              <Th>Action</Th>
-            </tr>
-            {owners?.map((data, idx) => {
-              return (
-                <tr key={idx}>
-                  <Td>{++idx}</Td>
-                  <Td>{data.name}</Td>
-                  <Td>{data.email}</Td>
-                  <Td>{data.phoneNumber}</Td>
-                  <Td>{data.nik}</Td>
-                  <Td>{data.isActive ? "active" : "inactive"}</Td>
-                  <Td>
-                    {!data.isActive ? (
-                      "-"
-                    ) : (
-                      <div className="flex gap-2 justify-center items-center">
-                        <button
-                          onClick={() => handleSendEditToForm(data)}
-                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-secondary hover:bg-secondary-darker focus:bg-secondary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
-                        >
-                          <span>Edit</span>
-                        </button>
-                        <button
-                          onClick={() => handleOpenModal(data.id)}
-                          className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
-                        >
-                          <span>Delete</span>
-                        </button>
-                      </div>
-                    )}
-                  </Td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      {!Array.isArray(owners) || owners.length === 0 ? (
+        <div className="flex justify-center items-center">
+          <h1 className="font-bold text-dark">Data Belum ada</h1>
+        </div>
+      ) : (
+        <div className="w-full overflow-x-auto">
+          <table
+            className="w-full border border-collapse rounded sm:border-separate border-slate-200 text-center"
+            cellSpacing="0"
+          >
+            <tbody>
+              <tr>
+                <Th>No</Th>
+                <Th>Nama</Th>
+                <Th>Email</Th>
+                <Th>Nomor HP</Th>
+                <Th>NIK</Th>
+                <Th>Status</Th>
+                <Th>Action</Th>
+              </tr>
+              {owners?.map((data, idx) => {
+                return (
+                  <tr key={idx}>
+                    <Td>{++idx}</Td>
+                    <Td>{data.name}</Td>
+                    <Td>{data.email}</Td>
+                    <Td>{data.phoneNumber}</Td>
+                    <Td>{data.nik}</Td>
+                    <Td>{data.isActive ? "active" : "inactive"}</Td>
+                    <Td>
+                      {!data.isActive ? (
+                        "-"
+                      ) : (
+                        <div className="flex gap-2 justify-center items-center">
+                          <button
+                            onClick={() => handleSendEditToForm(data)}
+                            className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-secondary hover:bg-secondary-darker focus:bg-secondary-darker focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                          >
+                            <span>Edit</span>
+                          </button>
+                          <button
+                            onClick={() => handleOpenModal(data.id)}
+                            className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-red-600 hover:bg-red-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-neutral-300 disabled:bg-neutral-300 disabled:shadow-none"
+                          >
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      )}
+                    </Td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
       {paging.totalPage > 1 && (
         <div className="w-full mt-2 flex justify-center items-center">
           <Pagination

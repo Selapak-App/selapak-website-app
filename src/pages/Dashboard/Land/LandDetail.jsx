@@ -91,7 +91,7 @@ const LandDetail = () => {
             <div className="gap-2">
               <p className="font-bold text-lg text-dark">Luas Per SLot</p>
               <p className="font-semibold text-lg text-slate-400">
-                {land.slotArea}m
+                {land.slotArea}
               </p>
             </div>
             <div className="gap-2">

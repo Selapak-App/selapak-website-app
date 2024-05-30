@@ -45,6 +45,7 @@ const LandList = () => {
         setOpenModal(false);
       } else {
         console.log("error di func delete");
+        setOpenModal(false);
       }
     } catch (e) {
       console.log(e);

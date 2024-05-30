@@ -47,7 +47,7 @@ const LandService = () => {
 
   const deleteLand = async (payload) => {
     try {
-      const res = await axiosInstance.delete(`/lands/${payload.id}`);
+      const res = await axiosInstance.delete(`/lands/${payload}`);
       if (res.status == 200) {
         return res.data.message;
       } else {
