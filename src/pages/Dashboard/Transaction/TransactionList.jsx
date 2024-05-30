@@ -11,7 +11,8 @@ import Loading from "../../../components/Element/Loading";
 import Th from "../../../components/Element/Th";
 import Td from "../../../components/Element/Td";
 import dayjs from "dayjs";
-import { Pagination } from "flowbite-react";
+import { Pagination, Toast } from "flowbite-react";
+import { HiCheck } from "react-icons/hi";
 
 const TransactionList = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const TransactionList = () => {
     (state) => state.transaction
   );
   const [currentPage, setCurrentPage] = useState(1);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   // const [survey,setSurvey] = useState([])
   // const [validTrx,setValidTrx] = useState([])
 
@@ -46,6 +48,7 @@ const TransactionList = () => {
     try {
       const res = await dispatch(doneSurveyTrxAction(data)).unwrap();
       if (res) {
+        setShowSuccessToast(true);
         console.log(res);
       } else {
         console.log("Error to change survey status");
@@ -59,6 +62,7 @@ const TransactionList = () => {
     try {
       const res = await dispatch(verifyPaymentAction(data)).unwrap();
       if (res) {
+        setShowSuccessToast(true);
         console.log(res);
       } else {
         console.log("Error to change payment status");
@@ -94,6 +98,17 @@ const TransactionList = () => {
   }
   return (
     <div className="w-full pt-8 px-6">
+      {showSuccessToast && (
+        <div className="absolute right-5 top-5">
+          <Toast>
+            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+              <HiCheck className="h-5 w-5" />
+            </div>
+            <div className="ml-3 text-sm font-normal">Verifikasi Berhasil</div>
+            <Toast.Toggle onClick={() => setShowSuccessToast(false)} />
+          </Toast>
+        </div>
+      )}
       <div className="mb-8">
         <div className="flex items-center mb-4">
           <h1 className="text-dark font-bold">Transaksi Belum di Survey</h1>
@@ -234,7 +249,7 @@ const TransactionList = () => {
         <div className="flex items-center mb-4">
           <h1 className="text-dark font-bold">Transaksi</h1>
         </div>
-        <div className="w-full overflow-x-auto">
+        <div className="w-full">
           <table
             className="w-full border border-collapse rounded sm:border-separate border-slate-200 text-center"
             cellSpacing="0"

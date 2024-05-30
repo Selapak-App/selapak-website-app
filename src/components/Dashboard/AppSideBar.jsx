@@ -23,7 +23,7 @@ const AppSideBar = () => {
       <aside
         id="nav-menu-4"
         aria-label="Side navigation"
-        className="top-0 bottom-0 left-0 z-40 flex w-72 h-full flex-col bg-white shadow-lg transition-transform lg:translate-x-0"
+        className="top-0 bottom-0 left-0 z-40 flex w-72 h-full flex-col flex-shrink-0 bg-white shadow-lg transition-transform lg:translate-x-0"
       >
         <div className="flex flex-col items-center gap-4 p-6">
           <div className="shrink-0">
