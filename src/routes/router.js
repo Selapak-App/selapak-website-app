@@ -19,6 +19,7 @@ import TransactionDetail from "../pages/Dashboard/Transaction/TransactionDetail"
 import Overview from "../pages/Dashboard/Overview/Overview";
 import Home from "../pages/LandingPage/Home/Home";
 import AboutUs from "../pages/LandingPage/AboutUs/AboutUs";
+import MitraLapak from "../pages/LandingPage/MitraLapak/MitraLapak";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
   {
     path: "/about",
     Component: AboutUs,
+  },
+  {
+    path: "/lapak",
+    Component: MitraLapak,
   },
   {
     path: "dashboard",
