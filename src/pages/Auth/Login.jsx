@@ -38,9 +38,11 @@ const Login = () => {
       if (res) {
         navigate("/dashboard");
       } else {
+        alert("Akun tidak ada");
         setError(true);
       }
     } catch (e) {
+      alert("Akun tidak ada");
       console.log(e);
       setError(true);
     }
@@ -102,7 +104,7 @@ const Login = () => {
                 rules={{ required: true }}
                 render={({ field: { onBlur, onChange, value } }) => (
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="password"
                     type="password"
                     onBlur={onBlur}
@@ -127,12 +129,12 @@ const Login = () => {
               >
                 Login
               </button>
-              <a
+              {/* <a
                 className="inline-block align-baseline font-bold text-sm text-primary hover:text-blue-800"
                 href="#"
               >
                 Forgot Password?
-              </a>
+              </a> */}
             </div>
           </form>
         </div>
