@@ -5,12 +5,16 @@ import { useEffect } from "react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const tokenApp = localStorage.getItem("token");
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
     }
   }, [navigate]);
+  if (!tokenApp) {
+    window.location.replace("/login");
+  }
   return (
     <>
       <div className="flex w-full h-screen">
