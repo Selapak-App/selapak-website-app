@@ -22,6 +22,7 @@ const LandOwnerList = () => {
 
   useEffect(() => {
     dispatch(getAllOwnerAction(currentPage));
+    console.log(currentPage);
   }, [dispatch, currentPage]);
 
   const navToForm = () => {
@@ -35,7 +36,7 @@ const LandOwnerList = () => {
 
   const onPageChange = (page) => {
     setCurrentPage(page);
-    dispatch(getAllOwnerAction(currentPage));
+    // dispatch(getAllOwnerAction(currentPage));
   };
   const handleDelete = async (id) => {
     try {

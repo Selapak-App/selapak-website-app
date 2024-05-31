@@ -4,7 +4,7 @@ const LandOwnerService = () => {
   const getAll = async (payload) => {
     try {
       const res = await axiosInstance.get(
-        `/land-owners?page=${payload ? payload : 1}`
+        `/land-owners?page=${payload ? payload : 1}&size=5`
       );
       if (res.status == 200) {
         return res.data;

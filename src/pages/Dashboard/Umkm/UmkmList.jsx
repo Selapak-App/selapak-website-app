@@ -47,7 +47,6 @@ const UmkmList = () => {
 
   const onPageChange = (page) => {
     setCurrentPage(page);
-    dispatch(getAllUmkmAction(currentPage));
   };
 
   if (isLoading) {

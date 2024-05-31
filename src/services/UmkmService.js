@@ -4,7 +4,7 @@ const UmkmService = () => {
   const getAll = async (payload) => {
     try {
       const res = await axiosInstance.get(
-        `/customers?page=${payload ? payload : 1}`
+        `/customers?page=${payload ? payload : 1}&size=5`
       );
       if (res.status == 200) {
         return res.data;

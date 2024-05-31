@@ -25,7 +25,6 @@ const LandList = () => {
 
   const onPageChange = (page) => {
     setCurrentPage(page);
-    dispatch(getAllLandAction(currentPage));
   };
 
   const handleOpenModal = (id) => {

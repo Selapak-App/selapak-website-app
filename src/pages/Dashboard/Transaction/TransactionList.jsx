@@ -31,7 +31,6 @@ const TransactionList = () => {
 
   const onPageChange = (page) => {
     setCurrentPage(page);
-    dispatch(getAllTrxAction(currentPage));
   };
 
   const trxYetToSurvey = transactions.filter(
